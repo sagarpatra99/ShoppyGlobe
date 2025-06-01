@@ -191,10 +191,10 @@ export default function ProductDetails() {
 
               {/* Action Buttons */}
               <div className="space-y-4">
-                <div className="flex items-center gap-6">
+                <div className="flex items-center flex-col sm:flex-row gap-3 sm:gap-6">
                   <button
-                    //   onClick={handleAddToCart}
-                    className="w-full bg-[#FF9F00] hover:shadow-xl duration-300 rounded-xl cursor-pointer text-white font-medium text-lg py-4 flex items-center justify-center space-x-3"
+                      // onClick={handleAddToCart}
+                    className="w-full bg-[#FF9F00] hover:shadow-xl duration-300 rounded-xl cursor-pointer text-white font-medium text-sm sm:text-lg py-4 flex items-center justify-center space-x-3"
                     disabled={product.stock === 0}
                   >
                     <ShoppingCart className="h-6 w-6" />
@@ -204,7 +204,7 @@ export default function ProductDetails() {
                   </button>
                   <button
                     //   onClick={handleAddToCart}
-                    className="w-full bg-[#FB641B] hover:shadow-xl duration-300 rounded-xl cursor-pointer text-white font-medium text-lg py-4 flex items-center justify-center space-x-3"
+                    className="w-full bg-[#FB641B] hover:shadow-xl duration-300 rounded-xl cursor-pointer text-white font-medium text-sm sm:text-lg py-4 flex items-center justify-center space-x-3"
                     disabled={product.stock === 0}
                   >
                     <ShoppingBag className="h-6 w-6" />

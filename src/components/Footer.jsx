@@ -28,7 +28,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="bg-orange-600 text-white mt-16 px-[6vw]">
+    <footer className="bg-orange-600 text-white px-[6vw]">
       <div className="max-w-7xl mx-auto py-12 grid grid-cols-1 md:grid-cols-3 gap-12">
         {/* Branding & About */}
         <div>
