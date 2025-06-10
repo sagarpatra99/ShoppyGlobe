@@ -10,7 +10,6 @@ export default function ProductItem({ product }) {
   const handleAddToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    dispatch(addToCart(product));
     try {
     dispatch(addToCart(product));
     toast.success(`${product.title} has been added to your cart.`);
