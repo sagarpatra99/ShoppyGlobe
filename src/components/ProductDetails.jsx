@@ -16,8 +16,26 @@ import { useFetchProducts } from "../hooks/FetchProducts";
 import { useState } from "react";
 import Reviews from "./Review";
 import Loading from "./ui/Loading"
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/cartSlice";
+import { toast } from "react-toastify";
 
 export default function ProductDetails() {
+
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    try {
+    dispatch(addToCart({product, quantity}));
+    toast.success(`${product.title} has been added to your cart.`);
+  } catch {
+    toast.error("Something went wrong while adding to cart.");
+  }
+  };
+
+
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
@@ -193,7 +211,7 @@ export default function ProductDetails() {
               <div className="space-y-4">
                 <div className="flex items-center flex-col sm:flex-row gap-3 sm:gap-6">
                   <button
-                      // onClick={handleAddToCart}
+                      onClick={handleAddToCart}
                     className="w-full bg-[#FF9F00] hover:shadow-xl duration-300 rounded-xl cursor-pointer text-white font-medium text-sm sm:text-lg py-4 flex items-center justify-center space-x-3"
                     disabled={product.stock === 0}
                   >

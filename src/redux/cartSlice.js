@@ -10,14 +10,14 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       //   state.items.push(action.payload);
-      const product = action.payload;
+      const {product, quantity} = action.payload;
       const existing = state.items.find(
         (item) => item.product.id === product.id
       );
       if (existing) {
-        existing.quantity += 1;
+        existing.quantity += quantity;
       } else {
-        state.items.push({ product, quantity: 1 });
+        state.items.push({ product, quantity });
       }
     },
     removeFromCart: (state, action) => {
