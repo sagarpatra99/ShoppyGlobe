@@ -15,13 +15,31 @@ import { Link, useParams } from "react-router-dom";
 import { useFetchProducts } from "../hooks/FetchProducts";
 import { useState } from "react";
 import Reviews from "./Review";
-import Loading from "./ui/Loading"
+import Loading from "./ui/Loading";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../redux/cartSlice";
+import { toast } from "react-toastify";
 
 export default function ProductDetails() {
   const [selectedImage, setSelectedImage] = useState(0);
   const [quantity, setQuantity] = useState(1);
   const { id } = useParams();
   // console.log(id);
+
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (e) => {
+    // dispatch(addToCart({ ...product, quantity }));
+    e.preventDefault();
+        e.stopPropagation();
+        try {
+        // dispatch(addToCart(product));
+        dispatch(addToCart({ ...product, quantity }));
+        toast.success(`${product.title} has been added to your cart.`);
+      } catch {
+        toast.error("Something went wrong while adding to cart.");
+      }
+  };
 
   const { products, error } = useFetchProducts();
   // console.log(products);
@@ -100,10 +118,20 @@ export default function ProductDetails() {
               {/* Header */}
               <div>
                 <div className="flex items-center space-x-4 mb-3">
-                  <span className={`${product.brand ? "bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium" : "p-0 m-0"}`}>
+                  <span
+                    className={`${
+                      product.brand
+                        ? "bg-orange-500 text-white px-3 py-1 rounded-full text-sm font-medium"
+                        : "p-0 m-0"
+                    }`}
+                  >
                     {product.brand}
                   </span>
-                  <span className={`text-gray-500 px-2 py-1 rounded-full text-sm ${!product.brand && "bg-orange-500 text-white px-4"}`}>
+                  <span
+                    className={`text-gray-500 px-2 py-1 rounded-full text-sm ${
+                      !product.brand && "bg-orange-500 text-white px-4"
+                    }`}
+                  >
                     {product.category}
                   </span>
                 </div>
@@ -193,7 +221,7 @@ export default function ProductDetails() {
               <div className="space-y-4">
                 <div className="flex items-center flex-col sm:flex-row gap-3 sm:gap-6">
                   <button
-                      // onClick={handleAddToCart}
+                    onClick={handleAddToCart}
                     className="w-full bg-[#FF9F00] hover:shadow-xl duration-300 rounded-xl cursor-pointer text-white font-medium text-sm sm:text-lg py-4 flex items-center justify-center space-x-3"
                     disabled={product.stock === 0}
                   >

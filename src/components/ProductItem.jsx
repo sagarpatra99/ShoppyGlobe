@@ -10,9 +10,9 @@ export default function ProductItem({ product }) {
   const handleAddToCart = (e) => {
     e.preventDefault();
     e.stopPropagation();
-    dispatch(addToCart(product));
     try {
-    dispatch(addToCart(product));
+    // dispatch(addToCart(product));
+    dispatch(addToCart({ ...product, quantity: 1 }));
     toast.success(`${product.title} has been added to your cart.`);
   } catch {
     toast.error("Something went wrong while adding to cart.");
