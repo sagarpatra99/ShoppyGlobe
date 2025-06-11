@@ -10,14 +10,14 @@ const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       //   state.items.push(action.payload);
-      const {product, quantity} = action.payload;
+      const product = action.payload;
       const existing = state.items.find(
         (item) => item.product.id === product.id
       );
       if (existing) {
-        existing.quantity += quantity;
+        existing.quantity += 1;
       } else {
-        state.items.push({ product, quantity });
+        state.items.push({ product, quantity: 1 });
       }
     },
     removeFromCart: (state, action) => {
@@ -25,7 +25,7 @@ const cartSlice = createSlice({
       const productId = action.payload;
       state.items = state.items.filter((item) => item.product.id !== productId);
     },
-    clearCart: (state) => {
+    clearCart: (state, action) => {
       state.items.length = 0;
     },
   },
