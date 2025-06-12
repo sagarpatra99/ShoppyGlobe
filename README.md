@@ -16,4 +16,5 @@ If you are developing a production application, we recommend using TypeScript wi
 # To run this application
 
 # 1: npm i
-# 2: npm run dev
+# 2: npm i express nodemon 
+# 3: npm run dev
