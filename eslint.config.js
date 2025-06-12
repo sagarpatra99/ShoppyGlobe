@@ -14,6 +14,9 @@ export default [
         ecmaVersion: 'latest',
         ecmaFeatures: { jsx: true },
         sourceType: 'module',
+        env: {
+        node: true,
+      },
       },
     },
     plugins: {
